@@ -40,7 +40,7 @@ function populateReviews(movie) {
 async function getAllMovies(args) {
     try {
         let movies = await Movie.find().populate('Director').populate('Actors').populate('Writer')
-        movies = movies.map(movie => populateReviews(movie))
+        movies.map(async movie => await populateReviews(movie))
         if (args && args.Title) {
             movies = movies.filter(movie => movie.Title.toLowerCase().startsWith(args.Title.toLowerCase()))
         }
@@ -49,6 +49,9 @@ async function getAllMovies(args) {
         }
         if (args && args.Year) {
             movies = movies.filter(movie => movie.Year === args.Year)
+        }
+        if (args && args.minrating) {
+            movies = movies.filter(movie => (movie.Reviews.length !== 0 ? movie.Reviews.map(review => parseInt(review.Value)).reduce((acc, cur) => acc + cur, 0) / movie.Reviews.length : 0) > args.minrating)
         }
         return movies
     } catch (error) {

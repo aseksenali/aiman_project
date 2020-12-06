@@ -39,6 +39,9 @@ router.get('/', (req, res, next) => {
     if (req.query && req.query.Year) {
         req.query.Year = parseInt(req.query.Year)
     }
+    if (req.query && req.query.minrating) {
+        req.query.minrating = parseInt(req.query.minrating)
+    }
     graphql('http://localhost:8000/graphql', request, req, {
         query: req.query
     })
@@ -51,7 +54,7 @@ router.get('/', (req, res, next) => {
             }
         })
         .then(movies => {
-            console.log(movies.data.movies[10])
+            console.log(movies)
             res.render("index", {movies: movies.data.movies, user: req.user})
         })
 });

@@ -4,18 +4,25 @@ function filterMoviesByTitle() {
     let url = new URL(address);
     const title = document.getElementById("search_input").value
     const category = document.getElementById("category").value
-    if (title !== "") {
-        url.searchParams.set('Title', title);
-    } else {
-        url.searchParams.delete('Title');
-    }
+    const minrating = document.getElementById("minrating").value
+
     if (category !== '') {
         url.searchParams.set('Genre', category);
     } else {
         url.searchParams.delete("Genre");
     }
+    if (minrating !== '') {
+        url.searchParams.set("minrating", minrating);
+    } else {
+        url.searchParams.delete("minrating");
+    }
+    if (title !== "") {
+        url.searchParams.set('Title', title);
+    } else {
+        url.searchParams.delete('Title');
+    }
 
-    window.location.replace(url)
+    window.location = url
 }
 
 function addReview() {

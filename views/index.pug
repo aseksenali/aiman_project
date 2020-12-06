@@ -2,7 +2,7 @@ extends layout
 include includes/movieblock
 
 block content
-    -const categories = Array.from(new Set(movies.flatMap(movie => movie.Genre)))
+    -const categories = movies ? Array.from(new Set(movies.flatMap(movie => movie.Genre))) : []
     .container
         .filters
             label="Genre "
@@ -10,6 +10,8 @@ block content
                 option(selected)
                 for category in categories
                     option= category
+            label="Minrating "
+            input#minrating(type='number')
         for movie in movies
             +movieblock(movie)
         else
