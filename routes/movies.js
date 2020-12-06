@@ -54,7 +54,6 @@ router.get('/', (req, res, next) => {
             }
         })
         .then(movies => {
-            console.log(movies)
             res.render("index", {movies: movies.data.movies, user: req.user})
         })
 });
