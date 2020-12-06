@@ -31,7 +31,7 @@ const mongoOptions = {
     pass: "F235vk26",
     dbName: "aiman"
 }
-mongoose.connect("mongodb://192.168.1.237:27017/", mongoOptions)
+mongoose.connect("mongodb://db:27017/", mongoOptions)
     .then(() => {
         server.listen(port);
         server.on('error', onError);
