@@ -32,7 +32,7 @@ const userSchema = new Schema(
     }
 );
 
-userSchema.methods.validPassword = function(password) {
+userSchema.methods.validPassword = function (password) {
     return this.Password === password;
 }
 

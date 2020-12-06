@@ -40,7 +40,7 @@ router.get('/', contributing, (req, res, next) => {
 });
 
 router.get('/:userId', async (req, res, next) => {
-    const user = await User.findOne({Username: req.user.Username}).exec()
+    const user = await User.findOne({ Username: req.user.Username }).exec()
     if (user._id.toString() === req.params.userId) {
         res.redirect('/me')
     }
@@ -68,15 +68,15 @@ router.get('/:userId', async (req, res, next) => {
         id: req.params.userId
     })
         .then(r => {
-        if (r.status >= 300) {
-            res.status(r.status)
-            res.send(r.body)
-        } else {
-            return r.json()
-        }
-    })
+            if (r.status >= 300) {
+                res.status(r.status)
+                res.send(r.body)
+            } else {
+                return r.json()
+            }
+        })
         .then(user => {
-            res.render("userprofile", {user: user.data.user})
+            res.render("userprofile", { user: user.data.user })
         })
 })
 

@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-const graphql = function(url, graphqlRequest, req, variables) {
+const graphql = function (url, graphqlRequest, req, variables) {
     const body = {
         query: graphqlRequest,
         variables: variables

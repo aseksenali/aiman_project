@@ -156,8 +156,8 @@ async function createReview(userID, movieId, value) {
 
 async function me(user) {
     try {
-        return await User.findOne({Username: user})
-    } catch(err) {
+        return await User.findOne({ Username: user })
+    } catch (err) {
         throw err
     }
 }
@@ -178,7 +178,7 @@ module.exports = {
         movie: async (objs, args, context, info) => getMovieById(args.id),
         person: async (objs, args, context, info) => getPersonById(args.id),
         me: async (objs, args, context, info) => me(context.user.Username),
-        user: async(objs, args, context, info) => getUserById(args.id)
+        user: async (objs, args, context, info) => getUserById(args.id)
     },
     Mutation: {
         changeUser: async (objs, args, context, info) => changeUser(args.user),

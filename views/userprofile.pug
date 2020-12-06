@@ -7,9 +7,9 @@ block content
             p= "Email: " + user.Email
             if user.Role
                 p= "Role: " + user.Role
-                button(onclick="changeRole('" + user.Role + "', '" + user._id +"')") Change role
+                button(onclick="changeRole('" + user.Role + "', '" + user._id + "')") Change role
             else
-                button(onclick="subscribe('"+ user._id + "')") Subscribe
+                button(onclick="subscribe('" + user._id + "')") Subscribe
         .user_subscribe
             h2 Following users
             .users

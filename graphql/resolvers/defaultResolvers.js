@@ -4,7 +4,7 @@ const Person = require("../schema/PersonSchema")
 
 async function saveUser(user) {
     try {
-        const users = await User.find({$or: [{Username: user.Username}, {Email: user.Email}]}).exec()
+        const users = await User.find({ $or: [{ Username: user.Username }, { Email: user.Email }] }).exec()
         if (users.length !== 0) {
             return null
         }
@@ -109,7 +109,7 @@ async function getPersonById(id) {
 
 async function getUserById(id) {
     try {
-        const user = await User.findOne({ _id: id}).populate('UserSubscriptions').populate('PersonSubscriptions').exec()
+        const user = await User.findOne({ _id: id }).populate('UserSubscriptions').populate('PersonSubscriptions').exec()
         return user
     } catch (err) {
         throw err
@@ -122,7 +122,7 @@ module.exports = {
         movie: async (objs, args, context, info) => getMovieById(args.id),
         person: async (objs, args, context, info) => getPersonById(args.id),
         actors: getAllActors,
-        user: async(objs, args, context, info) => getUserById(args.id)
+        user: async (objs, args, context, info) => getUserById(args.id)
     },
     Mutation: {
         saveUser: (objs, args, context, info) => saveUser(args.user),

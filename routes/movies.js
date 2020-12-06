@@ -54,7 +54,7 @@ router.get('/', (req, res, next) => {
             }
         })
         .then(movies => {
-            res.render("index", {movies: movies.data.movies, user: req.user})
+            res.render("index", { movies: movies.data.movies, user: req.user })
         })
 });
 
@@ -132,7 +132,7 @@ router.get('/:movieID', (req, res, next) => {
             }
         })
         .then(movie => {
-            res.render("moviedetails", {movie: movie.data.movie, user: req.user})
+            res.render("moviedetails", { movie: movie.data.movie, user: req.user })
         })
 })
 

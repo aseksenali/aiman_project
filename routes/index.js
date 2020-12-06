@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/me', secured, async (req, res, next) => {
-    const user = await User.findOne({Username: req.user.Username}).exec()
+    const user = await User.findOne({ Username: req.user.Username }).exec()
     const request =
         `
         query User($id: ID) {
@@ -59,12 +59,12 @@ router.get('/me', secured, async (req, res, next) => {
             }
         })
         .then(user => {
-            res.render("userprofile", {user: user.data.user})
+            res.render("userprofile", { user: user.data.user })
         })
 });
 
 router.get('/movies/create', contributing, (req, res, next) => {
-    res.render("createmovie", {user: req.user})
+    res.render("createmovie", { user: req.user })
 })
 
 module.exports = router;

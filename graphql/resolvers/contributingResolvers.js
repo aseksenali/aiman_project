@@ -67,7 +67,6 @@ async function getAllUsers() {
 }
 
 
-
 module.exports = {
     Query: {
         users: getAllUsers

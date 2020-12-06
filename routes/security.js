@@ -14,15 +14,17 @@ passport.deserializeUser((id, done) => {
     })
 })
 passport.use(new LocalStrategy((username, password, done) => {
-    User.findOne({Username: username}, (err, user) => {
-        if (err) {return done(err)}
+    User.findOne({ Username: username }, (err, user) => {
+        if (err) {
+            return done(err)
+        }
         if (!user) {
             console.log("Incorrect username.")
-            return done(null, false, {message: 'Incorrect username.'})
+            return done(null, false, { message: 'Incorrect username.' })
         }
         if (!user.validPassword(password)) {
             console.log("Incorrect password.")
-            return done(null, false, {message: 'Incorrect password.'})
+            return done(null, false, { message: 'Incorrect password.' })
         }
         return done(null, user)
     })

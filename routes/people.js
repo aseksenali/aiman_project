@@ -38,7 +38,7 @@ router.get('/:personId', (req, res, next) => {
             }
         })
         .then(person => {
-            res.render("personpage", {person: person.data.person, user: req.user})
+            res.render("personpage", { person: person.data.person, user: req.user })
         })
 })
 
