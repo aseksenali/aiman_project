@@ -117,12 +117,12 @@ async function subscribe(userId, id) {
         if (source === null)
             return null
         let destination = await Person.findById(id).exec()
-        if (destination !== null) {
+        if (destination !== null && !source.PersonSubscriptions.includes(destination._id)) {
             source.PersonSubscriptions = [...source.PersonSubscriptions, destination._id]
             return await source.save()
         }
         destination = await User.findById(id).exec()
-        if (destination !== null) {
+        if (destination !== null && !source.PersonSubscriptions.includes(destination._id)) {
             source.UserSubscriptions = [...source.UserSubscriptions, destination._id]
             return await source.save()
         }

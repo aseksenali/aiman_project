@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .container
+        .info
+            h1= person.Name
+            button(onclick="subscribe('"+ person._id + "')") Subscribe
+        .featured
+            h2 Movies
+            .movies
+                for movie in person.Movies
+                    .movie
+                        a(href='/movies/' + movie._id)
+                            img.userlogo(src=movie.Poster)
+                            h2=movie.Title
+                else
+                    p No featured movies...

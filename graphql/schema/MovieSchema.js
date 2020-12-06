@@ -15,98 +15,78 @@ const movieSchema = new Schema(
             required: true
         },
         Rated: {
-            type: String,
-            required: true
+            type: String
         },
         Runtime: {
-            type: String,
-            required: true
+            type: String
         },
         Released: {
-            type: String,
-            required: true
+            type: String
         },
         Genre: [{
-            type: String,
-            required: true
+            type: String
         }],
         Director: [{
             type: Schema.ObjectId,
-            ref: 'Person',
-            required: true
+            ref: 'Person'
         }],
         Writer: [{
             type: Schema.ObjectId,
-            ref: 'Person',
-            required: true
+            ref: 'Person'
         }],
         Actors: [{
             type: Schema.ObjectId,
-            ref: 'Person',
-            required: true
+            ref: 'Person'
         }],
         Plot: {
             type: String,
             required: true
         },
         Country: [{
-            type: String,
-            required: true
+            type: String
         }],
         Language: [{
-            type: String,
-            required: true
+            type: String
         }],
         Awards: {
-            type: String,
-            required: true
+            type: String
         },
         Poster: {
             type: String,
             required: true
         },
         Ratings: [{
-            type: RatingSchema,
-            required: true
+            type: RatingSchema
         }],
         Metascore: {
             type: Number
         },
         imdbRating: {
-            type: Number,
-            required: true
+            type: Number
         },
         imdbVotes: {
-            type: Number,
-            required: true
+            type: Number
         },
         imdbID: {
-            type: String,
-            required: true
+            type: String
         },
         Type: {
-            type: String,
-            required: true
+            type: String
         },
         DVD: {
-            type: String,
-            required: true
+            type: String
         },
         BoxOffice: {
-            type: String,
-            required: true
+            type: String
         },
         Production: {
-            type: String,
-            required: true
+            type: String
         },
         Website: {
-            type: String,
-            required: true
+            type: String
         },
         Response: {
-            type: Boolean,
-            required: true
+            type: Boolean
         },
         Reviews: [{
             type: ReviewSchema,

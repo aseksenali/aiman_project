@@ -215,10 +215,10 @@ a {
   grid-area: roles;
   height: auto;
 }
-.movie_detail .actors {
+.movie_detail .actors, .users, .people {
   display: flex;
 }
-.actors .actor {
+.movies .userlogo, .user_subscribe .userlogo, .subperson .userlogo, .actors .actor {
   width: 200px;
 }
 .actor img {
@@ -244,4 +244,22 @@ a {
   background-color: grey;
   float: left;
   margin-right: 20px;
+}
+
+
+.user_subscribe .subuser h2, .subperson h2 {
+  text-align: center;
+}
+
+.user_subscribe .subuser {
+
+}
+
+.subuser img {
+  width: 100%;
+}
+
+.subuser h2 {
+  text-align: center;
+  margin: 0;
 }

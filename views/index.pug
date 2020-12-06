@@ -5,6 +5,7 @@ block content
     -const categories = Array.from(new Set(movies.flatMap(movie => movie.Genre)))
     .container
         .filters
+            label="Genre "
             select#category
                 option(selected)
                 for category in categories
@@ -13,4 +14,5 @@ block content
             +movieblock(movie)
         else
             h2 No movies have been found...
+        button(onclick='window.location.replace("http://localhost:8000/movies/create")') Create Movie
 

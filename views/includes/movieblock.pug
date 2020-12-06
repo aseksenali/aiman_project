@@ -3,5 +3,5 @@ mixin movieblock(movie)
         a(href= "/movies/" + movie._id): img(src=movie.Poster)
         div.data
             a(href= "/movies/" + movie._id): h2=movie.Title
-            for data in [{key: "Release year", value: movie.Year}, {key: "Genres", value: movie.Genre.slice(0, 3).join(', ')}, {key: 'Description', value: movie.Plot}]
+            for data in [{key: "Release year", value: movie.Year}, {key: "Genres", value: movie.Genre.slice(0, 3).join(', ')}, {key: 'Description', value: movie.Plot}, {key: 'Rating', value: movie.Reviews.length !== 0 ? movie.Reviews.map(review => review.Value).reduce((acc, cur) => acc + cur, 0) / movie.Reviews.length : 0}]
                 p= data.key + ": " + data.value

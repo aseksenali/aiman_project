@@ -2,9 +2,20 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 const graphql = require('./common')
+const User = require('../graphql/schema/UserSchema')
+
+function contributing(req, res, next) {
+    if (req.user) {
+        if (req.user.Role === 'contributing') {
+            return next()
+        }
+    }
+    req.session.returnTo = req.originalUrl
+    res.send("Not enough rights")
+}
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
+router.get('/', contributing, (req, res, next) => {
     const request =
         `{
             users {
@@ -28,16 +39,26 @@ router.get('/', (req, res, next) => {
         })
 });
 
-router.get('/:userId', (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
+    const user = await User.findOne({Username: req.user.Username}).exec()
+    if (user._id.toString() === req.params.userId) {
+        res.redirect('/me')
+    }
+    next()
+}, (req, res, next) => {
     const request =
         `
         query User($id: ID) {
             user(id: $id) {
+                _id
                 Username
+                Email
                 UserSubscriptions {
+                    _id
                     Username
                 }
                 PersonSubscriptions {
+                    _id
                     Name
                 }
             }
@@ -54,8 +75,8 @@ router.get('/:userId', (req, res, next) => {
             return r.json()
         }
     })
-        .then(users => {
-            res.send(users)
+        .then(user => {
+            res.render("userprofile", {user: user.data.user})
         })
 })
 

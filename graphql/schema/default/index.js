@@ -4,6 +4,7 @@ module.exports = `
     Username: String!
     Password: String!
     Email: String!
+    Role: String
     UserSubscriptions: [User]
     PersonSubscriptions: [Person]
   }
@@ -32,30 +33,30 @@ module.exports = `
     _id: ID!
     Title: String!
     Year: Int!
-    Rated: String!
-    Released: String!
-    Runtime: String!
-    Genre: [String!]!
-    Director: [Person!]!
-    Writer: [Person!]!
-    Actors: [Person!]!
+    Rated: String
+    Released: String
+    Runtime: String
+    Genre: [String]
+    Director: [Person]
+    Writer: [Person]
+    Actors: [Person]
     Plot: String!
-    Language: [String!]!
-    Country: [String!]!
-    Awards: String!
+    Language: [String]
+    Country: [String]
+    Awards: String
     Poster: String!
-    Ratings: [Rating!]!
+    Ratings: [Rating]
     Metascore: Int
-    imdbRating: Float!
-    imdbVotes: Int!
-    imdbID: String!
-    Type: String!
-    DVD: String!
-    BoxOffice: String!
-    Production: String!
-    Website: String!
+    imdbRating: Float
+    imdbVotes: Int
+    imdbID: String
+    Type: String
+    DVD: String
+    BoxOffice: String
+    Production: String
+    Website: String
     Reviews: [Review]
-    Response: Boolean!
+    Response: Boolean
   }
   input UserInput {
     Username: String!

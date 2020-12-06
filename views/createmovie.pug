@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    .container
+        form(action='/movies' method='post')
+            label Title:
+            input(type='text' name='Title')
+            label Plot:
+            input(type='text' name='Plot')
+            label Year:
+            input(type='text' name='Year')
+            label Poster:
+            input(type='text' name='Poster')
+            input(type='submit' onclick="window.location.replace('http://localhost:8000/movies');" value='Create')

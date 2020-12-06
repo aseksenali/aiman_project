@@ -65,7 +65,7 @@ function postContributing(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/register', registerRouter)
-app.use('/users', getContributing, usersRouter)
+app.use('/users', usersRouter)
 app.use('/', securityRouter);
 app.use('/graphql', graphqlRouter)
 app.use('/movies', moviesRouter);

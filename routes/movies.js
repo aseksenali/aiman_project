@@ -12,6 +12,14 @@ function contributing(req, res, next) {
     res.send("Not enough rights")
 }
 
+function secured(req, res, next) {
+    if (req.user) {
+        return next()
+    }
+    req.session.returnTo = req.originalUrl;
+    res.redirect("/login");
+}
+
 /* GET users listing. */
 router.get('/', (req, res, next) => {
     const request =
@@ -23,6 +31,9 @@ router.get('/', (req, res, next) => {
                 Year
                 Poster
                 Plot
+                Reviews {
+                    Value
+                }
             }
         }`
     if (req.query && req.query.Year) {
@@ -40,6 +51,7 @@ router.get('/', (req, res, next) => {
             }
         })
         .then(movies => {
+            console.log(movies.data.movies[10])
             res.render("index", {movies: movies.data.movies, user: req.user})
         })
 });
@@ -54,6 +66,9 @@ router.post('/', contributing, (req, res, next) => {
                 Year
             }
         }`
+    if (req.body && req.body.Year) {
+        req.body.Year = parseInt(req.body.Year)
+    }
     graphql('http://localhost:8000/graphql', request, req, {
         movie: req.body
     })
@@ -118,14 +133,6 @@ router.get('/:movieID', (req, res, next) => {
             res.render("moviedetails", {movie: movie.data.movie, user: req.user})
         })
 })
-
-function secured(req, res, next) {
-    if (req.user) {
-        next()
-    }
-    req.session.returnTo = req.originalUrl;
-    res.redirect("/login");
-}
 
 router.post('/:movieID/reviews', secured, (req, res, next) => {
     const request =

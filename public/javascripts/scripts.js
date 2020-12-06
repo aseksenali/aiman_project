@@ -51,3 +51,18 @@ function changeRole(currentRole, userID) {
     xmlHttp.withCredentials = true;
     xmlHttp.send(JSON.stringify({Id: userID, Role: newRole}));
 }
+
+function subscribe(userId) {
+    const port = window.location.port ? ":" + window.location.port : ""
+    const address = window.location.protocol + "//" + window.location.hostname + port + "/people/" + userId + '/subscribe'
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+            window.location.reload();
+        }
+    }
+    xmlHttp.open("POST", address, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/json")
+    xmlHttp.withCredentials = true;
+    xmlHttp.send(null);
+}

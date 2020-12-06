@@ -2,8 +2,31 @@ extends layout
 
 block content
     .container
-        h1= user.Username
-        p= "Email: " + user.Email
-        p= "Role: " + user.Role
-        button(onclick="changeRole('" + user.Role + "', '" + user._id +"')") Change role
-
+        .info
+            h1= user.Username
+            p= "Email: " + user.Email
+            if user.Role
+                p= "Role: " + user.Role
+                button(onclick="changeRole('" + user.Role + "', '" + user._id +"')") Change role
+            else
+                button(onclick="subscribe('"+ user._id + "')") Subscribe
+        .user_subscribe
+            h2 Following users
+            .users
+                for sub_user in user.UserSubscriptions
+                    .subuser
+                        a(href='/users/' + sub_user._id)
+                            img.userlogo(src='/images/account.svg')
+                            h2=sub_user.Username
+                else
+                    p No following users...
+        .person_subscribe
+            h2 Following people
+            .people
+                for person in user.PersonSubscriptions
+                    .subperson
+                        a(href='/people/' + person._id)
+                            img.userlogo(src='/images/account.svg')
+                            h2=person.Name
+                else
+                    p No following people...

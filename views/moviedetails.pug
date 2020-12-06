@@ -14,23 +14,32 @@ block content
             .filming
                 h3 Filming
                 .actors
-                    for actor in movie.Actors
-                        a.actor(href="/people/" + actor._id)
-                            img(src='/images/account.svg')
-                            h2=actor.Name
+                    if movie.Actors
+                        for actor in movie.Actors
+                            a.actor(href="/people/" + actor._id)
+                                img(src='/images/account.svg')
+                                h2=actor.Name
+                    else
+                        p No actors are available...
             .creators
                 h3 Creators
                 p(style="display: inline;")="Directors: "
-                for director, index in movie.Director
-                    a(href="/people/" + director._id)=director.Name
-                    if (parseInt(index) !== movie.Director.length - 1)
-                        p(style="display: inline")=", "
+                if movie.Director
+                    for director, index in movie.Director
+                        a(href="/people/" + director._id)=director.Name
+                        if (parseInt(index) !== movie.Director.length - 1)
+                            p(style="display: inline")=", "
+                else
+                    p No directors are available...
                 br
                 p(style="display: inline;")="Writers: "
+                if movie.Writer
                     for writer, index in movie.Writer
                         a(href="/people/" + writer._id)=writer.Name
                         if (parseInt(index) !== movie.Writer.length - 1)
                             p(style="display: inline")=", "
+                else
+                    p No writers are available...
             .reviews
                 h3 Reviews
                 for review in movie.Reviews
