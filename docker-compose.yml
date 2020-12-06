@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 services:
   server:
     build: .
@@ -15,19 +15,17 @@ services:
     image: mongo
     networks:
       - backend
-    port:
+    ports:
       - "27017:27017"
     name: db
     environment:
       "MONGO_INITDB_ROOT_USERNAME": root
       "MONGO_INITDB_ROOT_PASSWORD": F235vk26
-    volumes:
-      - db
   mongo-express:
     image: mongo-express
     networks:
       - backend
-    port:
+    ports:
       - "8081:8081"
     name: mongo-express
     environment:
@@ -36,3 +34,5 @@ services:
       "ME_CONFIG_BASICAUTH_PASSWORD": F235vk26
     depends_on:
       - mongo
+networks:
+  backend:
