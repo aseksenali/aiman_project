@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    .container
+        .movie_detail
+            img.poster(src=movie.Poster)
+            .general
+                h1=movie.Title
+                p="Release year: " + movie.Year
+                p="Genres: " + movie.Genre.join(", ")
+                p="Country: " + movie.Country.join(", ")
+            .description
+                p="Description: " + movie.Plot
+            .filming
+                h3 Filming
+                .actors
+                    for actor in movie.Actors
+                        a.actor(href="/people/" + actor._id)
+                            img(src='/images/account.svg')
+                            h2=actor.Name
+            .creators
+                h3 Creators
+                p(style="display: inline;")="Directors: "
+                for director, index in movie.Director
+                    a(href="/people/" + director._id)=director.Name
+                    if (parseInt(index) !== movie.Director.length - 1)
+                        p(style="display: inline")=", "
+                br
+                p(style="display: inline;")="Writers: "
+                    for writer, index in movie.Writer
+                        a(href="/people/" + writer._id)=writer.Name
+                        if (parseInt(index) !== movie.Writer.length - 1)
+                            p(style="display: inline")=", "
+            .reviews
+                h3 Reviews
+                for review in movie.Reviews
+                    .review
+                        img.userlogo(src='/images/account.svg')
+                        a(href="/users/" + review.Source._id)=review.Source.Username
+                        p= review.Value + "/100"
+                if user
+                    .create_review
+                        input#review_value(type="range", min="0", max="100")
+                        button(onclick="addReview()") Submit

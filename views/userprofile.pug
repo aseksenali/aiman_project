@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    .container
+        h1= user.Username
+        p= "Email: " + user.Email
+        p= "Role: " + user.Role
+        button(onclick="changeRole('" + user.Role + "', '" + user._id +"')") Change role
+

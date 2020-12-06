@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    form(action='/register' method='post')
+        div
+            label Username:
+            input(type='text' name='Username')
+        div
+            label Email:
+            input(type='text' name='Email')
+        div
+            label Password:
+            input(type='password' name='Password')
+        div
+            input(type='submit' value='Sign up')

@@ -1,0 +1,11 @@
+header
+    - let items = user ? [{text: 'movies', href: "/movies"}, {text: 'account', href: "/me"}, {text: 'log out', href: '/logout'}] : [{text: 'register', href: '/register'}, {text: "log in", href: '/login'}]
+    h1 AFILM
+    nav
+        ul
+            for item in items
+                a(href= item.href)
+                    li.pullUp= item.text.toUpperCase()
+    .search_field
+        input.search(type='text', id='search_input')
+        button.search_button(onclick='filterMoviesByTitle()') SEARCH

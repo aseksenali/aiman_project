@@ -1,0 +1,7 @@
+mixin movieblock(movie)
+    div.movie_short
+        a(href= "/movies/" + movie._id): img(src=movie.Poster)
+        div.data
+            a(href= "/movies/" + movie._id): h2=movie.Title
+            for data in [{key: "Release year", value: movie.Year}, {key: "Genres", value: movie.Genre.slice(0, 3).join(', ')}, {key: 'Description', value: movie.Plot}]
+                p= data.key + ": " + data.value

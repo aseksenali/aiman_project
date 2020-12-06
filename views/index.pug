@@ -1,0 +1,16 @@
+extends layout
+include includes/movieblock
+
+block content
+    -const categories = Array.from(new Set(movies.flatMap(movie => movie.Genre)))
+    .container
+        .filters
+            select#category
+                option(selected)
+                for category in categories
+                    option= category
+        for movie in movies
+            +movieblock(movie)
+        else
+            h2 No movies have been found...
+
