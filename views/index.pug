@@ -12,6 +12,14 @@ block content
                     option= category
             label="Minrating "
             input#minrating(type='number')
+        if user
+            .recommendation
+                h2 Recommendations
+                if movies.length !== 0
+                    +movieblock(movies[0])
+                else
+                    h2 No movies have been found...
+        h2 All movies
         for movie in movies
             +movieblock(movie)
         else
